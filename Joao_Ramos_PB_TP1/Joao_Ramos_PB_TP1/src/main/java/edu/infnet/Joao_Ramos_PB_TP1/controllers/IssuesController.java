@@ -1,0 +1,70 @@
+package edu.infnet.Joao_Ramos_PB_TP1.controllers;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import edu.infnet.Joao_Ramos_PB_TP1.models.Issues.EIssueStatus;
+import edu.infnet.Joao_Ramos_PB_TP1.models.Issues.Issue;
+import edu.infnet.Joao_Ramos_PB_TP1.repositories.IssueRepository;
+
+@RestController
+@RequestMapping("/api/issues")
+@CrossOrigin(origins = "http://localhost:3000")
+public class IssuesController {
+
+    @Autowired
+    private IssueRepository issueRepository;
+
+    @GetMapping
+    public List<Issue> getAllIssues() {
+        return issueRepository.getAll();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Issue> getIssueById(@PathVariable Long id) {
+        return issueRepository.findById(id)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @PostMapping
+    public Issue createIssue(@RequestBody Issue issue, @RequestParam(required = true) String username) {
+        issue.setStatus(EIssueStatus.OPEN);
+        return issueRepository.saveEntity(issue, username);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Issue> updateIssue(@PathVariable Long id, @RequestBody Issue issueDetails, @RequestParam(required = true) String username) {
+        return issueRepository.findById(id).map(issue -> {
+            issue.setTitle(issueDetails.getTitle());
+            issue.setDescription(issueDetails.getDescription());
+            issue.setStatus(issueDetails.getStatus());
+
+            Issue updatedIssue = issueRepository.saveEntity(issue, username);
+            
+            return ResponseEntity.ok(updatedIssue);
+        }).orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteIssue(@PathVariable Long id, @RequestParam(required = true) String username) {
+        return issueRepository.findById(id).map(issue -> {
+
+            issueRepository.delete(issue, username);
+
+            return ResponseEntity.noContent().<Void>build();
+        }).orElseGet(() -> ResponseEntity.notFound().build());
+    }
+}
