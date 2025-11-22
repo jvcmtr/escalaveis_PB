@@ -1,4 +1,4 @@
-
+import React, { useState } from 'react';
 import { COLORS } from '../../services/StyleService';
 
 export default function TextInput(props) {
