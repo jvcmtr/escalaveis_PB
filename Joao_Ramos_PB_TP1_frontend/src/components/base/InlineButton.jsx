@@ -1,5 +1,5 @@
-import React from 'react';
-import { COLORS } from '../services/StyleService';
+import React from 'react'
+import { COLORS } from '../../services/StyleService'
 
 export default function InlineButton(props) {
     const [hover, setHover] = React.useState(false);
@@ -19,10 +19,11 @@ export default function InlineButton(props) {
 function getStyle(hover, customStyle){
     return {
         cursor: "pointer",
-        padding: '0.2em 0.5em',
-        borderRadius: '0.5em',
+        padding: '0.2em',
+        borderRadius: '0.1em',
         backgroundColor: hover? COLORS.softDim : "transparent", 
-        color: hover?  COLORS.softHighlight: COLORS.highlight, 
+        color: COLORS.highlight, 
+        textDecoration: hover? 'underline' : 'None', 
         border: 'none',
         ...customStyle  
     }

@@ -1,12 +1,60 @@
 :root {
   --bg-color: #ffffff;
+  --bg-color-dim: #dddddd;
   --secondary-bg-color: #303030;
+  --secondary-bg-color-dim: #505050;
   --text-color: #000000;
   --secondary-text-color: #ffffff;
   --dim: #808080;
-  --soft-dim: #aaaaaa40;
-  --highlight: #ffcc00;
+  --soft-dim: #90909020;
+  --highlight: #aa8000;
   --soft-highlight: #ccbb80;
+  --red: #bb4040;
+  --blue: #4040bb;
+  --green: #60aa60;
+  --yellow: #ffcc00;
   
   font: Helvetica, sans-serif;
+  
+}
+* {
+  transition-duration: 0.2s;
+}
+
+
+
+table {
+  border-collapse: separate;
+  border-spacing: 0px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  margin: 15px
+}
+
+thead td, thead th {
+  border: 1px solid var(--secondary-bg-color-dim); 
+  padding: 0.5rem;
+  font-weight: 600;
+  background-color: var(--secondary-bg-color);
+  color: var(--secondary-text-color);
+}
+
+thead td:hover, thead th:hover{
+  background-color: var(--secondary-bg-color-dim);
+  border: 1px solid var(--soft-highlight); 
+}
+
+
+tbody td {
+  padding: 0.3rem;
+  font-size: 0.8em;
+  border: 1px solid var(--bg-color);
+}
+
+tr:nth-child(even) {
+  background-color: var(--bg-color-dim);
+}
+
+tr:hover {
+  background-color: var(--soft-highlight);
+  color: var(--text-color) !important;
 }

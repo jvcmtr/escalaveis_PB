@@ -20,7 +20,7 @@ import edu.infnet.Joao_Ramos_PB_TP1.models.Issues.Issue;
 import edu.infnet.Joao_Ramos_PB_TP1.repositories.IssueRepository;
 
 @RestController
-@RequestMapping("/api/issues")
+@RequestMapping("/api/issue")
 @CrossOrigin(origins = "http://localhost:3000")
 public class IssuesController {
 

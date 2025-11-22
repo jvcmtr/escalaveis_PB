@@ -7,7 +7,8 @@ export default function RequireAuth(props) {
   const location = useLocation();
 
   if (!user) {
-    return <Navigate to="/login" state={{ from: location }} replace />;
+    const next = encodeURI(location.pathname)
+    return <Navigate to={`/login?next=${next}`} state={{ from: location }} />;
   }
 
   return props.children
