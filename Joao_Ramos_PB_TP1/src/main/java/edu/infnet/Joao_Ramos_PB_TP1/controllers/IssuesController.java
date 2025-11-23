@@ -18,14 +18,16 @@ import org.springframework.web.bind.annotation.RestController;
 import edu.infnet.Joao_Ramos_PB_TP1.models.Issues.EIssueStatus;
 import edu.infnet.Joao_Ramos_PB_TP1.models.Issues.Issue;
 import edu.infnet.Joao_Ramos_PB_TP1.repositories.IssueRepository;
+import edu.infnet.Joao_Ramos_PB_TP1.services.HistoryServiceIntegration;
 
 @RestController
 @RequestMapping("/api/issue")
 @CrossOrigin(origins = "http://localhost:3000")
 public class IssuesController {
 
-    @Autowired
-    private IssueRepository issueRepository;
+    @Autowired private IssueRepository issueRepository;
+    
+    @Autowired private HistoryServiceIntegration historyService;
 
     @GetMapping
     public List<Issue> getAllIssues() {
@@ -42,7 +44,10 @@ public class IssuesController {
     @PostMapping
     public Issue createIssue(@RequestBody Issue issue, @RequestParam(required = true) String username) {
         issue.setStatus(EIssueStatus.OPEN);
-        return issueRepository.saveEntity(issue, username);
+                
+        var e = issueRepository.saveEntity(issue, username);
+        historyService.recordAction("CREATE", username, e);
+        return e ;
     }
 
     @PutMapping("/{id}")
@@ -54,6 +59,7 @@ public class IssuesController {
 
             Issue updatedIssue = issueRepository.saveEntity(issue, username);
             
+            historyService.recordAction("UPDATE", username, updatedIssue);
             return ResponseEntity.ok(updatedIssue);
         }).orElseGet(() -> ResponseEntity.notFound().build());
     }
@@ -64,6 +70,7 @@ public class IssuesController {
 
             issueRepository.delete(issue, username);
 
+            historyService.recordAction("DELETE", username, new Issue());
             return ResponseEntity.noContent().<Void>build();
         }).orElseGet(() -> ResponseEntity.notFound().build());
     }

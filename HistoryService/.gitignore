@@ -34,4 +34,5 @@ build/
 
 # DB
 /data/*.mv.db
+/data/*.trace.db
 
