@@ -1,0 +1,121 @@
+{
+  "info": {
+    "_postman_id": "777a84a9-b7b9-4f70-8fd6-16f4ee7c227a",
+    "name": "Servico de Auditoria",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Buscar Historico",
+      "id": "bece15ab-b2fd-454e-b5c5-fcb1a37ec555",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "source",
+            "value": "{{SOURCE}}",
+            "type": "text"
+          },
+          {
+            "key": "username",
+            "value": "{{USERNAME}}",
+            "type": "text"
+          },
+          {
+            "key": "entityName",
+            "value": "",
+            "description": "Nome da entidade buscada. Ex. Issue, Log",
+            "type": "text",
+            "disabled": true
+          },
+          {
+            "key": "entityId",
+            "value": "",
+            "description": "Id da entidade usado pelo cliente.",
+            "type": "text",
+            "disabled": true
+          },
+          {
+            "key": "dateGreaterThan",
+            "value": "",
+            "description": "Limite maximo da data. Entidades criadas antes desta data não serão exibidas.",
+            "type": "text",
+            "disabled": true
+          },
+          {
+            "key": "dateLessThan",
+            "value": "",
+            "description": "Limite minimo da data. Entidades criadas antes depois data não serão exibidas.",
+            "type": "text",
+            "disabled": true
+          },
+          {
+            "key": "action",
+            "value": "",
+            "description": "Metainformação usada para filtragem. Em geral Metodo HTTP que gerou o registro.",
+            "type": "text",
+            "disabled": true
+          },
+          {
+            "key": "asc",
+            "value": "false",
+            "description": "Booleano. Ordem ascendente.",
+            "type": "text",
+            "disabled": true
+          }
+        ],
+        "url": {
+          "raw": "{{HISTORY_BASE_URL}}/history",
+          "host": [
+            "{{HISTORY_BASE_URL}}"
+          ],
+          "path": [
+            "history"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Criar Registro",
+      "id": "5374fd86-10b7-4007-b37c-0746437f8d95",
+      "request": {
+        "method": "POST",
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"source\" : \"{{SOURCE}}\",\r\n    \"username\": \"{{USERNAME}}\",\r\n    \"entityName\" : \"log\",\r\n    \"entityId\" : \"0\",\r\n    \"action\" : \"POST\",\r\n    \"state\" : {\r\n        \"timestamp\" : \"{{$isoTimestamp}}\",\r\n        \"message\" : \"[{{$isoTimestamp}}] Olá Mundo\"\r\n    }\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{HISTORY_BASE_URL}}/history",
+          "host": [
+            "{{HISTORY_BASE_URL}}"
+          ],
+          "path": [
+            "history"
+          ]
+        }
+      }
+    }
+  ],
+  "variable": [
+    {
+      "id": "357e49a3-0ec1-4c44-a103-4b4aa89b1027",
+      "key": "USERNAME",
+      "value": ""
+    },
+    {
+      "id": "e1e6641e-3751-43bb-a976-04a8fc10560c",
+      "key": "SOURCE",
+      "value": ""
+    },
+    {
+      "id": "d2b2b994-c0d6-41d7-ba40-3bf2d46366b7",
+      "key": "HISTORY_BASE_URL",
+      "value": ""
+    }
+  ]
+}

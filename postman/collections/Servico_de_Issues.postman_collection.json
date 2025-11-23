@@ -1,0 +1,163 @@
+{
+  "info": {
+    "_postman_id": "67714e74-a886-4826-89eb-04b84522acd1",
+    "name": "Servico de Issues",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "All Issues",
+      "id": "40f153e4-0cc0-4191-87ee-f57a14f298b2",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{BASE_URL}}/api/issue",
+          "host": [
+            "{{BASE_URL}}"
+          ],
+          "path": [
+            "api",
+            "issue"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Issue by Id",
+      "id": "15be1289-1321-442d-9d7f-3b835f85b016",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{BASE_URL}}/api/issue/:id",
+          "host": [
+            "{{BASE_URL}}"
+          ],
+          "path": [
+            "api",
+            "issue",
+            ":id"
+          ],
+          "variable": [
+            {
+              "key": "id",
+              "value": "43"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Create Issue",
+      "id": "13502f05-c95f-4eda-ab11-6808e578bf25",
+      "request": {
+        "method": "POST",
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"title\" : \"Titulo {{$isoTimestamp}}\",\r\n    \"description\" : \"Descrição {{$isoTimestamp}} : {{$randomLoremWords}} {{$randomLoremWords}}\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{BASE_URL}}/api/issue?username={{USERNAME}}",
+          "host": [
+            "{{BASE_URL}}"
+          ],
+          "path": [
+            "api",
+            "issue"
+          ],
+          "query": [
+            {
+              "key": "username",
+              "value": "{{USERNAME}}"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Update Issue",
+      "id": "cbc1c2b8-13a3-4eb2-aacf-63df3bd58a64",
+      "request": {
+        "method": "PUT",
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"title\" : \"Titulo {{$isoTimestamp}}\",\r\n    \"description\" : \"Descrição {{$isoTimestamp}} : {{$randomLoremWords}} {{$randomLoremWords}}\",\r\n    \"status\" : \"RESOLVED\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{BASE_URL}}/api/issue/:id?username={{USERNAME}}",
+          "host": [
+            "{{BASE_URL}}"
+          ],
+          "path": [
+            "api",
+            "issue",
+            ":id"
+          ],
+          "query": [
+            {
+              "key": "username",
+              "value": "{{USERNAME}}"
+            }
+          ],
+          "variable": [
+            {
+              "key": "id",
+              "value": "44"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Issue by Id",
+      "id": "6668a4a5-2f06-48f0-86a3-e759074cca58",
+      "request": {
+        "method": "DELETE",
+        "url": {
+          "raw": "{{BASE_URL}}/api/issue/:id?username=username",
+          "host": [
+            "{{BASE_URL}}"
+          ],
+          "path": [
+            "api",
+            "issue",
+            ":id"
+          ],
+          "query": [
+            {
+              "key": "username",
+              "value": "username"
+            }
+          ],
+          "variable": [
+            {
+              "key": "id",
+              "value": "44"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "variable": [
+    {
+      "id": "568f93e5-d92f-4919-98f1-73c595cc9da5",
+      "key": "BASE_URL",
+      "value": ""
+    },
+    {
+      "id": "81eb19bd-e9b5-4487-9a18-c7eeb7135457",
+      "key": "USERNAME",
+      "value": ""
+    }
+  ]
+}
