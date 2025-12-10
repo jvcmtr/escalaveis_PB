@@ -1,6 +1,7 @@
 # escalaveis_PB_TP1
-> Projeto feito como TP1 para a disciplina *Projeto de Bloco: Engenharia de Softwares Escaláveis* do *Instituto Infnet* 
+> Projeto feito como Trabalho Final para a disciplina *Projeto de Bloco: Engenharia de Softwares Escaláveis* do *Instituto Infnet* 
 > Por João Cicero - 2025
+> Feito com base em fork do projeto [escalaveis_PB_TP1](https://github.com/jvcmtr/escalaveis_PB_TP1/tree/TP3)
 
 ## Serviço de Issues
 `Joao_Ramos_PB_TP1/`
