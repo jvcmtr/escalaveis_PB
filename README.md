@@ -4,15 +4,15 @@
 > Feito com base em fork do projeto [escalaveis_PB_TP1](https://github.com/jvcmtr/escalaveis_PB_TP1/tree/TP3)
 
 ## Serviço de Issues
-`Joao_Ramos_PB_Issues/`
-Projeto REST API em Java SpringBoot 
+`IssueService/`
+Projeto REST API em Java SpringBoot para CRUD de Issues
 
 ## Serviço de Auditoria
 `HistoryService/`
 Projeto REST API SpringBoot para propositos de auditoria.
 
 ## Frontend
-`Joao_Ramos_PB_frontend/`
+`Frontend/`
 Projeto React que consome os endpoints da API.
 
 
@@ -20,7 +20,7 @@ Projeto React que consome os endpoints da API.
 1. Faça o download do repositorio 
 2. Rode a **Serviço de Issues**
     ```
-    cd Joao_Ramos_PB_Issues/
+    cd IssueService/
     mvn spring-boot:run
     ```
 3. Em um novo terminal, rode o **Serviço de Auditoria**
@@ -30,7 +30,7 @@ Projeto React que consome os endpoints da API.
     ```
 4. Em um novo terminal, rode o app **frontend**
     ```
-    cd Joao_Ramos_PB/
+    cd Frontend/
     npm install
     npm run
     ```
