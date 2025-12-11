@@ -1,7 +1,6 @@
 package edu.infnet.IssueService.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -22,7 +21,7 @@ public class HistoryServiceIntegration {
         body.state = entity;
 
         webClient.post()
-            .uri("http://localhost:8081/history")
+            .uri("http://history-service/history")
             .bodyValue(body)
             .retrieve()
             .bodyToMono(String.class)

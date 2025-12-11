@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: history-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: history-service
+  template:
+    metadata:
+      labels:
+        app: history-service
+    spec:
+      containers:
+        - name: history-service
+          image: joaoramos15285/escalaveis-pbhistory:1.0
+          ports:
+            - containerPort: 8081
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: history-service
+spec:
+  selector:
+    app: history-service
+  ports:
+    - port: 8081
+  type: ClusterIP

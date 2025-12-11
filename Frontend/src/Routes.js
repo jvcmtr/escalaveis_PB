@@ -17,7 +17,7 @@ export default function Routing() {
   }
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/frontend">
         <Routes>
           
           <Route element={<BaseLayout />} >

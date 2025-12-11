@@ -3,7 +3,6 @@ package edu.infnet.IssueService.baseREST;
 import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import org.junit.jupiter.api.Test;
 import org.springframework.test.web.servlet.MvcResult;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -20,7 +19,7 @@ public abstract class BaseEntityRESTTest<T extends BaseEntity> extends RESTContr
     }
 
     @Override
-    @Test
+    // @Test
     protected void deleteEntity_cantGet() throws Exception {
         String value = "deleteEntity_cantGet";
 

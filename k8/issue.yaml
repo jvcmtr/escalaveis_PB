@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: issue-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: issue-service
+  template:
+    metadata:
+      labels:
+        app: issue-service
+    spec:
+      containers:
+        - name: issue-service
+          image: joaoramos15285/escalaveis-pbissue:1.0
+          ports:
+            - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: issue-service
+spec:
+  selector:
+    app: issue-service
+  ports:
+    - port: 8080
+  type: ClusterIP

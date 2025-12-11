@@ -22,7 +22,7 @@ import edu.infnet.IssueService.services.HistoryServiceIntegration;
 
 @RestController
 @RequestMapping("/api/issue")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "*")
 public class IssuesController {
 
     @Autowired private IssueRepository issueRepository;

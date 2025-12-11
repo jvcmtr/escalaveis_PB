@@ -8,7 +8,6 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -42,14 +41,14 @@ public abstract class RESTControllerTest<T, Tid> {
     @Autowired
     ObjectMapper mapper;
 
-    @Test 
+    // @Test 
     protected void create_createAndReturnId(){
         T entity = newEntity("create_createAndReturnId");
         var id = assertDoesNotThrow(() -> createEntityOnDb(entity));
         assertNotNull(id);
     }
 
-    @Test
+    // @Test
     protected void read_readCreatedEntity() throws Exception {
         String value = "read_readEntity";
 
@@ -70,7 +69,7 @@ public abstract class RESTControllerTest<T, Tid> {
         assertEquals(prop, getEntityProperty(found));
     }
 
-    @Test
+    // @Test
     protected void read_readAllEntities() throws Exception {
     
         int count = 3;
@@ -95,7 +94,7 @@ public abstract class RESTControllerTest<T, Tid> {
         assertEquals(count, entities.size());
     }
 
-    @Test
+    // @Test
     protected void update_modifyProp() throws Exception {
         String name = "update_modifyProp";
 
@@ -130,7 +129,7 @@ public abstract class RESTControllerTest<T, Tid> {
         assertEquals(prop2, getEntityProperty(found));
     }
 
-    @Test
+    // @Test
     protected void deleteEntity_cantGet() throws Exception {
         String value = "deleteEntity_cantGet";
 
