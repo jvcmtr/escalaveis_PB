@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fluentbit
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fluentbit
+  template:
+    metadata:
+      labels:
+        app: fluentbit
+    spec:
+      containers:
+        - name: fluentbit
+          image: fluent/fluent-bit:1.8
+          ports:
+            - containerPort: 24224
+          volumeMounts:
+            - name: config-volume
+              mountPath: /fluentbit/etc
+      volumes:
+        - name: config-volume
+          configMap:
+            name: fluentbit-config
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: fluentbit-config
+data:
+  fluent-bit.conf: |
+    [SERVICE]
+        Flush        1
+        Log_Level    info
+    [INPUT]
+        Name         tail
+        Path         /var/log/*.log
+        Tag          kube.*
+    [OUTPUT]
+        Name         forward
+        Match        *
+        Host         elasticsearch
+        Port         9200
+        TLS          Off
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: fluentbit
+spec:
+  ports:
+    - port: 24224
+      targetPort: 24224
+  selector:
+    app: fluentbit

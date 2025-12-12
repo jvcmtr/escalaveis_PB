@@ -31,3 +31,11 @@ spec:
                 name: history-service
                 port:
                   number: 8081
+
+          - path: /kibana(/|$)(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: kibana
+                port:
+                  number: 5601
