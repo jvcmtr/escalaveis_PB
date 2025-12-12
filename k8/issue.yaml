@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: issue-service
-          image: joaoramos15285/escalaveis-pbissue:1.0
+          image: joaoramos15285/escalaveis-pbissue:1.4
           ports:
             - containerPort: 8080
 ---

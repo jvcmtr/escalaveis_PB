@@ -21,7 +21,7 @@ public class HistoryServiceIntegration {
         body.state = entity;
 
         webClient.post()
-            .uri("http://history-service/history")
+            .uri("http://history-service:8081/history")
             .bodyValue(body)
             .retrieve()
             .bodyToMono(String.class)
